@@ -76,8 +76,9 @@ app.get("/", (req, res) => {
 /**
  * Catch-all route for SPA client-side routing
  * Serves index.html for any route not handled by API
+ * Note: Express 5 requires named wildcard parameter
  */
-app.get("*", (req, res) => {
+app.get("/*splat", (req, res) => {
   res.sendFile(path.resolve("dist", "index.html"));
 });
 
