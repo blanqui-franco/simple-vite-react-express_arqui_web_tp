@@ -197,8 +197,8 @@ scripts/                       # Setup utilities
 
 ### Backend Stack
 
-- **Express 4** - Web framework
-- **Prisma 6** - Type-safe ORM
+- **Express 5** - Web framework
+- **Prisma 7** - Type-safe ORM with adapter pattern
 - **PostgreSQL** - Database
 - **Celebrate/Joi** - Input validation
 - **Helmet** - Security headers
@@ -264,6 +264,10 @@ DELETE /project/:id      Delete project
 
 <div align="center">
 
+**Homepage**
+
+<img src="screenshots/homepage.png" alt="Homepage" height="350">
+
 **Contact Management**
 
 <img src="screenshots/contacts.png" alt="Contacts" height="350">
@@ -327,3 +331,9 @@ npm run build
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+<p align="center">
+  <sub>Built with <a href="https://withAntigravity.com">Antigravity</a></sub>
+</p>

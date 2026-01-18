@@ -47,6 +47,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Major dependency upgrades:**
+  - MUI 6 → 7.3.7 (Grid2 renamed to Grid)
+  - Prisma 6 → 7.2.0 (new adapter pattern, prisma.config.ts)
+  - Express 4 → 5.2.1 (wildcard route syntax changed)
+  - Vite 6 → 7.3.1
+  - React 19.0.0 → 19.2.3
 - Updated to ESLint 9 flat config format
 - Migrated test scripts to Vitest
 - Improved project structure with barrel exports
