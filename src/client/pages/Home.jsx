@@ -11,7 +11,7 @@ import {
   Alert,
   CircularProgress,
 } from '@mui/material';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import {
   ContactPage as ContactIcon,
   Assignment as TaskIcon,
@@ -116,7 +116,7 @@ const Home = () => {
       icon: <CodeIcon />,
       title: 'Modern Stack',
       description:
-        'React 19, Vite 6+, Express.js, PostgreSQL, and Prisma ORM with the latest best practices.',
+        'React 19, Vite 7, Express 5, PostgreSQL, and Prisma 7 with the latest best practices.',
     },
     {
       icon: <RocketIcon />,

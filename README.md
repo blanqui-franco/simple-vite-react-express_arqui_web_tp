@@ -1,318 +1,339 @@
 # Simple Vite React Express
 
 <p align="center">
-  <img src="./public/template-logo.png" alt="modern-fullstack-template-logo" height="200">
+  <img src="./public/template-logo.png" alt="Simple Vite React Express" height="180">
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Vite-646CFF.svg?style=flat-square&logo=Vite&logoColor=white" alt="Vite 6+">
-    <img src="https://img.shields.io/badge/React-61DAFB.svg?style=flat-square&logo=React&logoColor=black" alt="React 19">
-    <img src="https://img.shields.io/badge/Express-000000.svg?style=flat-square&logo=Express&logoColor=white" alt="Express">
-    <img src="https://img.shields.io/badge/postgresql-4169e1.svg?style=flat-square&logo=PostgreSQL&logoColor=white" alt="PostgreSQL">
-    <img src="https://img.shields.io/badge/Prisma-2D3748.svg?style=flat-square&logo=Prisma&logoColor=white" alt="Prisma">
-    <br>
-    <img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=flat-square&logo=TypeScript&logoColor=white" alt="TypeScript Ready">
-    <img src="https://img.shields.io/badge/Material--UI-007FFF.svg?style=flat-square&logo=MUI&logoColor=white" alt="Material-UI">
-    <img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat-square&logo=ESLint&logoColor=white" alt="ESLint">
-    <img src="https://img.shields.io/badge/Prettier-F7B93E.svg?style=flat-square&logo=Prettier&logoColor=black" alt="Prettier">
-    <img src="https://img.shields.io/badge/Nodemon-76D04B.svg?style=flat-square&logo=Nodemon&logoColor=white" alt="Nodemon">
+  <img src="https://img.shields.io/badge/Vite-646CFF.svg?style=flat-square&logo=Vite&logoColor=white" alt="Vite 6">
+  <img src="https://img.shields.io/badge/React-61DAFB.svg?style=flat-square&logo=React&logoColor=black" alt="React 19">
+  <img src="https://img.shields.io/badge/Express-000000.svg?style=flat-square&logo=Express&logoColor=white" alt="Express">
+  <img src="https://img.shields.io/badge/PostgreSQL-4169e1.svg?style=flat-square&logo=PostgreSQL&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/Prisma-2D3748.svg?style=flat-square&logo=Prisma&logoColor=white" alt="Prisma">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="MIT License">
 </p>
 
-A full-stack starter template with working examples instead of empty files. I built this because I was tired of cloning repos with just authentication and a "Hello World" - this one has actual CRUD operations, relationships, and form handling so you can see how things connect together.
+A production-ready full-stack template with working examples. Unlike most starter templates that provide empty files, this one includes actual CRUD operations, database relationships, and form handling patterns.
 
-<div align="center">
-<img src="screenshots/homepage.png" alt="Homepage" height="400">
-</div>
+**Version 2.0** | [Changelog](CHANGELOG.md)
+
+---
+
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Using as a Template](#using-as-a-template)
+- [Project Structure](#project-structure)
+- [Available Scripts](#available-scripts)
+- [Architecture](#architecture)
+- [API Reference](#api-reference)
+- [Screenshots](#screenshots)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
 
 ## Quick Start
 
+**Prerequisites:** Node.js 20+, PostgreSQL
+
 ```bash
-# Clone and setup your project
-git clone git@github.com:Avinava/simple-vite-react-express.git your-project-name
-cd your-project-name
+# Clone the repository
+git clone git@github.com:Avinava/simple-vite-react-express.git my-project
+cd my-project
 
-# Install dependencies (npm, yarn, or pnpm)
+# Install dependencies
 npm install
-# or
-yarn install
-# or
-pnpm install
 
-# Environment setup
-cp example.env .env
-# Edit .env with your database credentials
-
-# Database initialization
-npm run db:setup
-# or manually:
-# npx prisma migrate dev
-# npx prisma generate
+# Run interactive setup
+npm run setup
 
 # Start development servers
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and you'll see what I mean. Instead of placeholder content, you get:
-- Contact management (create, edit, delete, view details)
-- Task tracking with status changes and priorities
-- Project organization with member assignments
-- Material-UI components that actually do something
-- PostgreSQL with foreign keys and relationships working
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-It's basically a simple CRM to demonstrate how the pieces fit together. Good for learning or as a starting point for something bigger.
+The template includes a demo CRM with:
+- Contact management with CRUD operations
+- Task tracking with status workflows
+- Project organization with team assignments
+- PostgreSQL database with relationships
 
-## What This Demonstrates
+---
 
-### Actual Working Features
-Most starter templates have a login page and then... nothing. Here you can immediately see how CRUD operations work, how forms connect to the backend, how to handle validation errors, and how the database relationships actually function. It's the stuff you usually have to figure out yourself.
+## Using as a Template
 
-### Common Patterns You'll Need
-The code shows how to structure a multi-model application: contacts, tasks, and projects with relationships between them. You can see how to handle one-to-many (contact has many tasks) and many-to-many (projects have many contacts) relationships. Plus practical things like status enums, optional fields, and proper foreign keys.
+### Starting a New Project
 
-### Full Stack Integration
-The frontend and backend actually talk to each other properly. API routes that return consistent response formats, error handling that shows meaningful messages, form validation on both client and server. You can see the complete data flow instead of guessing how pieces connect.
+```bash
+# Clone without git history
+npx degit Avinava/simple-vite-react-express my-project
+cd my-project
 
-### Development Setup That Works
-Everything is configured to work together from the start. Vite for fast frontend builds, Nodemon for backend auto-restart, Prisma for database management, and proper environment handling. No hunting for the right configuration or fighting with build tools.
+# Initialize git
+git init
+git add .
+git commit -m "Initial commit"
+
+# Setup and run
+npm install
+npm run setup
+npm run dev
+```
+
+### Customization Steps
+
+1. Update `package.json` with your project name and details
+2. Replace `/public/template-logo.png` with your logo
+3. Update the title in `index.html`
+4. Modify `src/client/theme/theme.js` for your color scheme
+
+### Removing Demo Code
+
+| Component | Location | Action |
+|-----------|----------|--------|
+| Database schema | `prisma/schema.prisma` | Replace with your models |
+| API routes | `src/server/routes/v1/` | Replace with your routes |
+| Business logic | `src/server/services/` | Replace with your services |
+| Pages | `src/client/pages/` | Replace with your pages |
+| Hooks | `src/client/hooks/` | Customize for your data |
+| Services | `src/client/services/` | Customize for your API |
+
+---
 
 ## Project Structure
 
 ```
-├── src/
-│   ├── client/              # Frontend (React + Vite)
-│   │   ├── components/      # Reusable UI components
-│   │   ├── pages/           # Route-based page components
-│   │   ├── hooks/           # Custom React hooks
-│   │   ├── utils/           # Client-side utilities
-│   │   └── theme/           # Material-UI theme config
-│   │
-│   └── server/              # Backend (Express + Node.js)
-│       ├── routes/          # API route definitions
-│       ├── services/        # Business logic layer
-│       ├── middleware/      # Express middleware
-│       ├── utils/           # Server utilities
-│       └── config/          # Configuration files
+src/
+├── client/                    # Frontend (React + Vite)
+│   ├── components/            # Reusable UI components
+│   ├── context/               # React contexts
+│   ├── hooks/                 # Custom hooks (useContacts, useTasks, etc.)
+│   ├── pages/                 # Route components
+│   ├── services/              # API service layer
+│   ├── theme/                 # Material-UI theme
+│   └── __tests__/             # Client tests
 │
-├── prisma/                  # Database (Prisma ORM)
-│   ├── schema.prisma        # Database schema
-│   ├── migrations/          # Database migrations
-│   └── seed.js              # Database seeding
-│
-├── docs/                    # Documentation
-├── public/                  # Static assets
-└── scripts/                 # Build & deployment scripts
+└── server/                    # Backend (Express)
+    ├── config/                # Centralized configuration
+    ├── middleware/            # Security, validation
+    ├── routes/                # API route definitions
+    ├── services/              # Business logic
+    └── utils/                 # Utilities
+
+prisma/                        # Database
+├── schema.prisma              # Schema definition
+├── migrations/                # Migration history
+└── seed.js                    # Sample data
+
+scripts/                       # Setup utilities
 ```
+
+---
 
 ## Available Scripts
 
 ### Development
 
-```bash
-npm run dev          # Start both client and server
-npm run client       # Start only frontend (Vite)
-npm run server       # Start only backend (Nodemon)
-npm run preview      # Preview production build
-```
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start client and server concurrently |
+| `npm run client` | Start Vite dev server only |
+| `npm run server` | Start Express with Nodemon |
+| `npm run server:debug` | Start with Node inspector |
+| `npm run setup` | Interactive project setup |
+| `npm run clean` | Clear build artifacts |
 
 ### Database
 
-```bash
-npm run db:setup     # Initialize database (migrate + generate)
-npm run db:migrate   # Run database migrations
-npm run db:generate  # Generate Prisma client
-npm run db:studio    # Open Prisma Studio
-npm run db:reset     # Reset database
-npm run db:seed      # Seed database with sample data
-```
+| Command | Description |
+|---------|-------------|
+| `npm run db:setup` | Run migrations and generate client |
+| `npm run db:migrate` | Run pending migrations |
+| `npm run db:generate` | Regenerate Prisma client |
+| `npm run db:studio` | Open Prisma Studio GUI |
+| `npm run db:reset` | Reset database |
+| `npm run db:seed` | Seed with sample data |
+
+### Testing
+
+| Command | Description |
+|---------|-------------|
+| `npm test` | Run tests in watch mode |
+| `npm run test:run` | Run tests once |
+| `npm run test:coverage` | Generate coverage report |
 
 ### Code Quality
 
-```bash
-npm run lint         # Check code quality
-npm run lint:fix     # Fix linting issues
-npm run format       # Format code with Prettier
-npm run format:check # Check code formatting
-```
+| Command | Description |
+|---------|-------------|
+| `npm run lint` | Check for linting issues |
+| `npm run lint:fix` | Auto-fix linting issues |
+| `npm run format` | Format with Prettier |
+| `npm run format:check` | Check formatting |
 
 ### Production
 
-```bash
-npm run build        # Build for production
-npm start            # Start production server
+| Command | Description |
+|---------|-------------|
+| `npm run build` | Build for production |
+| `npm start` | Start production server |
+| `npm run preview` | Preview production build |
+
+---
+
+## Architecture
+
+### Frontend Stack
+
+- **Vite 6** - Build tooling with hot module replacement
+- **React 19** - UI library with latest features
+- **Material-UI 6** - Component library with theming
+- **React Router 7** - Client-side routing
+- **Formik + Yup** - Form handling and validation
+- **Axios** - HTTP client with interceptors
+
+### Backend Stack
+
+- **Express 5** - Web framework
+- **Prisma 7** - Type-safe ORM with adapter pattern
+- **PostgreSQL** - Database
+- **Celebrate/Joi** - Input validation
+- **Helmet** - Security headers
+- **Rate Limiting** - Request throttling
+
+### Code Quality
+
+- **ESLint 9** - Linting with flat config
+- **Prettier** - Code formatting
+- **Vitest** - Testing framework
+- **React Testing Library** - Component testing
+
+---
+
+## API Reference
+
+All endpoints are prefixed with `/api/v1/`.
+
+### Contacts
+
+```
+GET    /contact/list     List all contacts
+GET    /contact/:id      Get contact by ID
+POST   /contact          Create contact
+PUT    /contact/:id      Update contact
+DELETE /contact/:id      Delete contact
 ```
 
-## Template Features
+### Tasks
 
-### Frontend
-
-- Vite 6+ for lightning fast builds and HMR
-- React 19 with latest concurrent features
-- Material-UI v6 with theme customization
-- Formik + Yup for form handling and validation
-- React Router v7 for client-side routing
-- Axios for HTTP requests
-- ESLint + Prettier for code quality
-- Responsive design with mobile-first approach
-
-### Backend
-
-- Express.js minimalist web framework
-- Prisma ORM with type-safe database client and migrations
-- Security middleware - Helmet, rate limiting, CORS protection
-- Structured architecture with routes, services, middleware separation
-- Environment configuration management
-- Input validation with Celebrate/Joi schemas
-- Clean business logic separation with service layer
-- Standardized API response format
-- Hot reload with automatic server restart via Nodemon
-- Performance optimizations with compression and caching headers
-
-### Development & Deployment
-
-- Modern tooling with latest versions of all dependencies
-- Docker support with multi-stage builds for production
-- Platform ready for Vercel, Railway, Render, Heroku
-- Database seeding with sample data for quick development
-- Code quality tools - ESLint, Prettier, and best practices
-- Comprehensive guides and examples
-
-## Making It Your Own
-
-### Basic Customization
-Change the app name in `package.json`, swap out the logo in `/public/template-logo.png`, and update the title in `index.html`. The theme colors are in `src/client/theme/theme.js` if you want to change the look.
-
-### Database Changes
-The schema in `prisma/schema.prisma` has three example models. You can modify them, add new ones, or delete what you don't need. Just run `npm run db:migrate` after changes. The current setup shows how relationships work if you need that pattern.
-
-### Adding Features
-The existing code structure makes it pretty straightforward to add new features. Look at how the contact routes are set up in `src/server/routes/v1/contact.route.js` and the corresponding service in `src/server/services/contact.service.js`. Copy that pattern for new functionality.
-
-### Deployment
-For production, you'll need to set up a PostgreSQL database somewhere and update the `DATABASE_URL` in your environment. The app is configured to serve the built frontend from the Express server, so a single deploy should work on most platforms.
-
-## API Overview
-
-All API endpoints are prefixed with `/api/v1/` and follow RESTful conventions.
-
-### Contact Management
-```bash
-GET    /contact/list     # Get all contacts
-GET    /contact/:id      # Get specific contact  
-POST   /contact          # Create new contact
-PUT    /contact/:id      # Update contact
-DELETE /contact/:id      # Delete contact
+```
+GET    /task/list        List all tasks
+GET    /task/:id         Get task by ID
+POST   /task             Create task
+PUT    /task/:id         Update task
+DELETE /task/:id         Delete task
 ```
 
-### Task Management  
-```bash
-GET    /task/list        # Get all tasks
-GET    /task/:id         # Get specific task
-POST   /task             # Create new task
-PUT    /task/:id         # Update task
-DELETE /task/:id         # Delete task
+### Projects
+
+```
+GET    /project/list     List all projects
+GET    /project/:id      Get project by ID
+POST   /project          Create project
+PUT    /project/:id      Update project
+DELETE /project/:id      Delete project
 ```
 
-### Project Management
-```bash
-GET    /project/list     # Get all projects
-GET    /project/:id      # Get specific project
-POST   /project          # Create new project
-PUT    /project/:id      # Update project
-DELETE /project/:id      # Delete project
-```
+### Response Format
 
-### Health Check
-```bash
-GET    /health           # Server status check
-```
-
-All endpoints return standardized JSON responses:
-```javascript
+```json
 {
-  "success": boolean,    // Operation status
-  "data": any,          // Response payload  
-  "message": string,    // Human-readable message
-  "timestamp": string   // ISO timestamp
+  "success": true,
+  "data": {},
+  "message": "Success",
+  "timestamp": "2026-01-18T12:00:00.000Z"
 }
 ```
 
-## Example Features
-
-The template includes a comprehensive project management system demonstrating:
-
-### 📋 Contact Management
-
-- Full CRUD operations with enhanced contact fields
-- Email uniqueness validation
-- Company and notes tracking
-- Phone number management
-
-### 📊 Project Management
-
-- Project creation with status tracking
-- Team member assignment with roles
-- Project timeline management
-- Member management (add/remove)
-
-### ✅ Task Management
-
-- Task creation with priority levels
-- Status workflow (TODO → IN_PROGRESS → REVIEW → DONE)
-- Task assignment to team members
-- Due date tracking and filtering
-- Project-based task organization
-
-### 🔗 Relationship Management
-
-- Many-to-many relationships between contacts and projects
-- One-to-many relationships for task assignments
-- Proper foreign key constraints and cascading deletes
-
-### 🛠️ Technical Demonstrations
-
-- Advanced Prisma schema with enums and relationships
-- Complex database queries with joins and filtering
-- Service layer architecture for business logic
-- Comprehensive input validation with Joi
-- Standardized API responses
-- Error handling and edge cases
+---
 
 ## Screenshots
 
-Here's what you get when you run it:
-
 <div align="center">
 
-### Contact Management
-<img src="screenshots/contacts.png" alt="Contacts List" height="400">
+**Homepage**
 
-### Task Management
-<img src="screenshots/tasks.png" alt="Task Management" height="400">
+<img src="screenshots/homepage.png" alt="Homepage" height="350">
 
-### Project Management
-<img src="screenshots/projects.png" alt="Project Management" height="400">
+**Contact Management**
 
-### Contact Details
-<img src="screenshots/contact-detail.png" alt="Contact Details" height="400">
+<img src="screenshots/contacts.png" alt="Contacts" height="350">
 
-### Form Handling
-<img src="screenshots/new-contacts.png" alt="New Contact Form" height="400">
+**Task Tracking**
 
-### Empty States
-<img src="screenshots/contacts-landing.png" alt="Empty State" height="400">
+<img src="screenshots/tasks.png" alt="Tasks" height="350">
+
+**Project Overview**
+
+<img src="screenshots/projects.png" alt="Projects" height="350">
 
 </div>
 
-You can see how data tables work with edit/delete actions, form validation in practice, and how to handle empty states. It's all functional, not just mock-ups.
+---
+
+## Troubleshooting
+
+### Database Connection Failed
+
+1. Verify PostgreSQL is running: `pg_isready -h localhost -p 5432`
+2. Check `DATABASE_URL` in `.env` file
+3. Run migrations: `npm run db:setup`
+4. Verify database exists: `psql -l`
+
+### Port Already in Use
+
+```bash
+# Kill processes on ports 3000 and 8080
+lsof -ti:3000 | xargs kill -9
+lsof -ti:8080 | xargs kill -9
+```
+
+### Hot Reload Not Working
+
+1. Increase file watcher limit (Linux): 
+   ```bash
+   echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+   ```
+2. Restart the dev server
+
+### Build Issues
+
+```bash
+npm run clean
+npm run build
+```
+
+---
 
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch: `git checkout -b feature/your-feature`
 3. Make your changes
-4. Run tests and linting
+4. Run tests: `npm run test:run && npm run lint`
 5. Submit a pull request
+
+---
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+<p align="center">
+  <sub>Built with <a href="https://withAntigravity.com">Antigravity</a></sub>
+</p>
