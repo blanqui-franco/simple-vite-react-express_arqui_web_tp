@@ -44,7 +44,8 @@ api.interceptors.request.use(
 
     // Development logging
     if (import.meta.env.DEV) {
-      console.log(`🚀 API Request: ${config.method?.toUpperCase()} ${config.url}`);
+      // eslint-disable-next-line no-console
+      console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`);
     }
 
     return config;

@@ -27,8 +27,7 @@ dotenv.config();
  * @param {string} name - Environment variable name
  * @returns {string} The value of the environment variable
  */
-// eslint-disable-next-line no-unused-vars
-const requireEnv = (name) => {
+const _requireEnv = (name) => {
   const value = process.env[name];
   if (!value) {
     throw new Error(`Missing required environment variable: ${name}`);
