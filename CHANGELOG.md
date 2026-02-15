@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-02-15
+
+### Added
+
+- **AI Agent Configuration**
+  - `GEMINI.md` for Gemini-specific project instructions
+  - `AGENTS.md` for cross-platform AI agent conventions
+  - `.agent/workflows/` with dev, test, and db workflows
+
+### Changed
+
+- Bump Node.js requirement from 20 → 22 (current LTS)
+- Update React 19.2.4, Prisma 7.4.0, MUI 7.3.8, Vitest 4.0.18
+- Refactor `Contacts.jsx` to use `useContacts` hook instead of raw axios
+- Refactor `Home.jsx` to use `useHealthCheck` hook instead of raw axios
+- Replace `strong-error-handler` with inline Express error middleware
+- Update version references in `AppContext.jsx`
+
+### Removed
+
+- `@mui/styles` (deprecated in MUI 7, unused)
+- `strong-error-handler` (unmaintained)
+- `DatabaseSetupGuide_Complex.jsx` (unused duplicate)
+- `overrides` block from `package.json`
+
 ## [2.0.0] - 2026-01-18
 
 ### Added

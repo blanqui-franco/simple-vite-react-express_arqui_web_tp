@@ -1,5 +1,5 @@
 import { Router } from "express";
-import errorHandler from "strong-error-handler";
+import { errors } from "celebrate";
 import contactRoutes from "./contact.route.js";
 import taskRoutes from "./task.route.js";
 import projectRoutes from "./project.route.js";
@@ -18,12 +18,20 @@ router.get("/health", (req, res) => {
   res.send("Ok");
 });
 
-// Error handling middleware
-router.use(
-  errorHandler({
-    debug: process.env.ENV !== "prod",
-    log: true,
-  })
-);
+// Handle Celebrate/Joi validation errors
+router.use(errors());
+
+// General error handling middleware
+router.use((err, req, res, _next) => {
+  const status = err.status || err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+
+  res.status(status).json({
+    success: false,
+    message,
+    ...(process.env.NODE_ENV !== "production" && { stack: err.stack }),
+  });
+});
 
 export default router;
+

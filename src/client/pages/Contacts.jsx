@@ -1,38 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { Box, Button, Container, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Card } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CallToAction from "../components/CallToAction";
 import ConfirmationDialog from "../components/ConfirmationDialog";
-import { toast } from "react-toastify";
-import AppHeroIcon from "../components/AppHeroIcon";
 import AppLoading from "../components/AppLoading";
 import { ContactPage, Group } from "@mui/icons-material";
+import { useContacts } from "../hooks";
 
 const Contacts = () => {
-  const [contacts, setContacts] = useState([]);
+  const { contacts, isLoading, deleteContact } = useContacts();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [contactToDelete, setContactToDelete] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchContacts = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get("/api/v1/contact/list");
-        setContacts(response.data.data);
-      } catch (err) {
-        console.error("Error fetching contacts:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchContacts();
-  }, []);
 
   const handleDeleteContact = (id) => {
     setContactToDelete(id);
@@ -40,15 +21,8 @@ const Contacts = () => {
   };
 
   const confirmDeleteContact = async () => {
-    try {
-      await axios.delete(`/api/v1/contact/${contactToDelete}`);
-      setContacts(contacts.filter((contact) => contact.id !== contactToDelete));
-      setDeleteDialogOpen(false);
-      toast.success("Contact deleted successfully");
-    } catch (err) {
-      console.error("Error deleting contact:", err);
-      toast.error("An error occurred while deleting the contact");
-    }
+    await deleteContact(contactToDelete);
+    setDeleteDialogOpen(false);
   };
 
   return (
@@ -127,3 +101,4 @@ const Contacts = () => {
 };
 
 export default Contacts;
+

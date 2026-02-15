@@ -1,26 +1,18 @@
-import React from "react";
-import { useTheme } from "@mui/material/styles";
-import makeStyles from "@mui/styles/makeStyles";
 import { TextField, Button, Typography, Grid, Box, Container, Card, CardContent } from "@mui/material";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { AccountCircle, Email, Person, PersonAdd, SaveAlt } from "@mui/icons-material";
+import { contactsService } from "../services";
 
-const useStyles = makeStyles((theme) => ({
-  errorMessage: {
-    color: theme.palette.error.main,
-    fontSize: "0.75rem",
-    marginTop: theme.spacing(0.5),
-    marginLeft: theme.spacing(1.5),
-  },
-}));
+const errorMessageSx = {
+  color: "error.main",
+  fontSize: "0.75rem",
+  mt: 0.5,
+  ml: 1.5,
+};
 
 const NewContact = () => {
-  const theme = useTheme();
-  const classes = useStyles(); // Add this line to use the styles
-
   const ContactSchema = Yup.object().shape({
     firstName: Yup.string().required("First name is required"),
     lastName: Yup.string().required("Last name is required"),
@@ -29,14 +21,14 @@ const NewContact = () => {
 
   const handleContactSubmit = async (values, { resetForm }) => {
     try {
-      const response = await axios.post("/api/v1/contact/create", {
+      await contactsService.create({
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
       });
 
       toast.success("Contact created successfully");
-      resetForm(); // Reset form after successful creation
+      resetForm();
     } catch (err) {
       console.error(err);
       toast.error("An error occurred while creating the contact");
@@ -77,7 +69,9 @@ const NewContact = () => {
                         startAdornment: <Person sx={{ mr: 1, color: "action.active" }} />,
                       }}
                     />
-                    <ErrorMessage className={classes.errorMessage} name="firstName" component="div" />
+                    <ErrorMessage name="firstName">
+                      {(msg) => <Box sx={errorMessageSx}>{msg}</Box>}
+                    </ErrorMessage>
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <Field
@@ -91,7 +85,9 @@ const NewContact = () => {
                         startAdornment: <AccountCircle sx={{ mr: 1, color: "action.active" }} />,
                       }}
                     />
-                    <ErrorMessage className={classes.errorMessage} name="lastName" component="div" />
+                    <ErrorMessage name="lastName">
+                      {(msg) => <Box sx={errorMessageSx}>{msg}</Box>}
+                    </ErrorMessage>
                   </Grid>
                   <Grid item xs={12}>
                     <Field
@@ -105,7 +101,9 @@ const NewContact = () => {
                         startAdornment: <Email sx={{ mr: 1, color: "action.active" }} />,
                       }}
                     />
-                    <ErrorMessage className={classes.errorMessage} name="email" component="div" />
+                    <ErrorMessage name="email">
+                      {(msg) => <Box sx={errorMessageSx}>{msg}</Box>}
+                    </ErrorMessage>
                   </Grid>
                   <Grid item xs={12}>
                     <Button
@@ -136,3 +134,4 @@ const NewContact = () => {
 };
 
 export default NewContact;
+
