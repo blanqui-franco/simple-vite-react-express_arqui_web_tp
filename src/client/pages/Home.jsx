@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Container,
   Typography,
@@ -21,57 +21,21 @@ import {
   Security as SecurityIcon,
 } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
-import axios from 'axios';
 import DatabaseSetupGuide from '../components/DatabaseSetupGuide';
+import { useHealthCheck } from '../hooks';
 
 const Home = () => {
-  const [dbStatus, setDbStatus] = useState('checking'); // 'checking', 'connected', 'error'
-  const [stats, setStats] = useState(null);
+  const { status, stats, retry } = useHealthCheck();
 
-  const checkDatabaseConnection = async () => {
-    try {
-      setDbStatus('checking');
-      console.log('Checking database connection...');
-
-      // Try to fetch health endpoint first
-      const healthRes = await axios.get('/api/v1/health').catch(() => null);
-      if (!healthRes) {
-        throw new Error('Server not responding');
-      }
-
-      // Try to fetch some basic data to check if DB is set up
-      const contactsRes = await axios.get('/api/v1/contact/list');
-      const tasksRes = await axios.get('/api/v1/task/list').catch(() => ({ data: { data: [] } }));
-      const projectsRes = await axios
-        .get('/api/v1/project/list')
-        .catch(() => ({ data: { data: [] } }));
-
-      setStats({
-        contacts: contactsRes.data.data?.length || 0,
-        tasks: tasksRes.data.data?.length || 0,
-        projects: projectsRes.data.data?.length || 0,
-      });
-      setDbStatus('connected');
-      console.log('Database connection successful');
-    } catch (error) {
-      console.error('Database connection error:', error);
-      setDbStatus('error');
-    }
-  };
-
-  useEffect(() => {
-    checkDatabaseConnection();
-  }, []);
-
-  if (dbStatus === 'error') {
+  if (status === 'error') {
     return (
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <DatabaseSetupGuide onRetry={checkDatabaseConnection} />
+        <DatabaseSetupGuide onRetry={retry} />
       </Container>
     );
   }
 
-  if (dbStatus === 'checking') {
+  if (status === 'checking') {
     return (
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Box textAlign="center" py={8}>

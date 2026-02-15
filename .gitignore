@@ -1,3 +1,6 @@
+# AI agent local config
+.gemini/
+
 # Logs
 logs
 *.log

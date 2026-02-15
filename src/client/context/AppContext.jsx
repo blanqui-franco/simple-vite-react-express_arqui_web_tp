@@ -34,7 +34,7 @@ const defaultContextValue = {
 
     // App config
     appName: "Simple Vite React Express",
-    version: "1.0.0",
+    version: "2.1.0",
 };
 
 /**
@@ -106,7 +106,7 @@ export function AppProvider({ children }) {
 
             // App config
             appName: "Simple Vite React Express",
-            version: "1.0.0",
+            version: "2.1.0",
         }),
         [isDarkMode, toggleTheme, setTheme]
     );
