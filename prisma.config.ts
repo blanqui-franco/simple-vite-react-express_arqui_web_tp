@@ -14,7 +14,11 @@ import { defineConfig } from "prisma/config";
 import dotenv from "dotenv";
 
 // Load environment variables
-dotenv.config();
+//dotenv.config(); 
+if (!process.env.DATABASE_URL) {
+  dotenv.config();
+}
+
 
 export default defineConfig({
     // Path to schema file
