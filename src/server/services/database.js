@@ -7,8 +7,9 @@
  */
 
 import dotenv from "dotenv";
-dotenv.config();
-
+if (!process.env.DATABASE_URL) {
+  dotenv.config();
+}
 import pkg from "@prisma/client";
 const { PrismaClient } = pkg;
 
