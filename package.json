@@ -10,7 +10,7 @@
   "scripts": {
     "setup": "node scripts/setup.js",
     "build": "npx prisma generate && vite build",
-    "start": "npx prisma db push && node src/server/index.js",
+    "start": "node src/server/index.js",
     "server": "nodemon src/server/index.js",
     "server:debug": "nodemon --inspect src/server/index.js",
     "client": "vite",
