@@ -6,10 +6,10 @@
  * Prisma 7 uses the adapter pattern for direct database connections.
  */
 
-import dotenv from "dotenv";
+/*import dotenv from "dotenv";
 if (!process.env.DATABASE_URL) {
   dotenv.config();
-}
+}*/
 import pkg from "@prisma/client";
 const { PrismaClient } = pkg;
 
