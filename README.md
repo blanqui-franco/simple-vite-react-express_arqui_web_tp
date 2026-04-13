@@ -187,7 +187,7 @@ En `package.json`:
 
 ```json
 "build": "npx prisma generate && vite build",
-"start": "node src/server/index.js"
+"start": "npx prisma db push && node src/server/index.js"
 ```
 
 ### 6. Ejecutar migraciones en producción
