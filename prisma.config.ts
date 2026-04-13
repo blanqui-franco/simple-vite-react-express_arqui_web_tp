@@ -9,7 +9,7 @@
  * For client: Connection is configured via adapter in database.js
  */
 
-import path from "node:path";
+/*import path from "node:path";
 import { defineConfig, env } from "prisma/config";
 import dotenv from "dotenv";
 
@@ -27,6 +27,16 @@ export default defineConfig({
     datasource: {
       url: process.env.DATABASE_URL,
     },
+});*/
+import "dotenv/config";
+import path from "node:path";
+import { defineConfig, env } from "prisma/config";
+
+export default defineConfig({
+  schema: path.join(import.meta.dirname, "prisma", "schema.prisma"),
+  datasource: {
+    url: env("DATABASE_URL"),
+  },
 });
 
 
