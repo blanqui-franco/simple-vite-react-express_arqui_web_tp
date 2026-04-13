@@ -1,339 +1,218 @@
-# Simple Vite React Express
+# Simple Vite React Express — Trabajo Práctico Arquitectura Web
 
-<p align="center">
-  <img src="./public/template-logo.png" alt="Simple Vite React Express" height="180">
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Vite-646CFF.svg?style=flat-square&logo=Vite&logoColor=white" alt="Vite 6">
-  <img src="https://img.shields.io/badge/React-61DAFB.svg?style=flat-square&logo=React&logoColor=black" alt="React 19">
-  <img src="https://img.shields.io/badge/Express-000000.svg?style=flat-square&logo=Express&logoColor=white" alt="Express">
-  <img src="https://img.shields.io/badge/PostgreSQL-4169e1.svg?style=flat-square&logo=PostgreSQL&logoColor=white" alt="PostgreSQL">
-  <img src="https://img.shields.io/badge/Prisma-2D3748.svg?style=flat-square&logo=Prisma&logoColor=white" alt="Prisma">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="MIT License">
-</p>
-
-A production-ready full-stack template with working examples. Unlike most starter templates that provide empty files, this one includes actual CRUD operations, database relationships, and form handling patterns.
-
-**Version 2.0** | [Changelog](CHANGELOG.md)
+**Trazabilidad End-to-End de una Solicitud Web**  
+FP-UNA — Arquitectura Web 2026  
+Prof. Rodrigo Benítez  
+Integrantes: Blanca Franco, Matías Gaona, Diego Duarte
 
 ---
 
-## Table of Contents
+## Descripción
 
-- [Quick Start](#quick-start)
-- [Using as a Template](#using-as-a-template)
-- [Project Structure](#project-structure)
-- [Available Scripts](#available-scripts)
-- [Architecture](#architecture)
-- [API Reference](#api-reference)
-- [Screenshots](#screenshots)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
+Aplicación full-stack utilizada como sistema de prueba para el análisis y documentación del ciclo completo de una petición web real. El stack incluye React 19 + Vite 7 en el frontend, Express 5 + Node.js 22 en el backend, y PostgreSQL 15 con Prisma ORM como capa de persistencia.
+
+**URL de producción:** https://simple-vite-react-expressarquiwebtp-production.up.railway.app
 
 ---
 
-## Quick Start
+## Stack tecnológico
 
-**Prerequisites:** Node.js 20+, PostgreSQL
+| Capa | Tecnología | Versión |
+|---|---|---|
+| Frontend | React + Vite | 19 / 7 |
+| Backend | Node.js + Express | 22 / 5 |
+| Base de datos | PostgreSQL | 15.4 |
+| ORM | Prisma | 7.4 |
+| Deploy | Railway | — |
+
+---
+
+## Requisitos previos
+
+- Node.js >= 22.0.0
+- npm >= 11.0.0
+- PostgreSQL >= 15
+- Git
+
+Verificar versiones instaladas:
 
 ```bash
-# Clone the repository
-git clone git@github.com:Avinava/simple-vite-react-express.git my-project
-cd my-project
+node --version
+npm --version
+psql --version
+git --version
+```
 
-# Install dependencies
+---
+
+## Instalación local
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/blanqui-franco/simple-vite-react-express_arqui_web_tp.git
+cd simple-vite-react-express_arqui_web_tp
+```
+
+### 2. Instalar dependencias
+
+```bash
 npm install
+```
 
-# Run interactive setup
-npm run setup
+### 3. Configurar variables de entorno
 
-# Start development servers
+Copiar el archivo de ejemplo y editarlo:
+
+```bash
+cp example.env .env
+```
+
+Editar `.env` con los valores correspondientes:
+
+```env
+PORT=8080
+NODE_ENV=development
+DATABASE_URL=postgresql://postgres:TU_CONTRASEÑA@localhost:5432/myapp?schema=public
+```
+
+### 4. Crear la base de datos
+
+En PostgreSQL, crear la base de datos:
+
+```sql
+CREATE DATABASE myapp;
+```
+
+### 5. Ejecutar migraciones con Prisma
+
+```bash
+npx prisma db push --force-reset
+```
+
+Esto crea las tablas `Contact`, `Project`, `ProjectMember` y `Task` en la base de datos.
+
+### 6. Iniciar el proyecto en modo desarrollo
+
+```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
-
-The template includes a demo CRM with:
-- Contact management with CRUD operations
-- Task tracking with status workflows
-- Project organization with team assignments
-- PostgreSQL database with relationships
+Esto levanta simultáneamente:
+- Frontend Vite en `http://localhost:3000`
+- Backend Express en `http://localhost:8080`
 
 ---
 
-## Using as a Template
+## Scripts disponibles
 
-### Starting a New Project
-
-```bash
-# Clone without git history
-npx degit Avinava/simple-vite-react-express my-project
-cd my-project
-
-# Initialize git
-git init
-git add .
-git commit -m "Initial commit"
-
-# Setup and run
-npm install
-npm run setup
-npm run dev
-```
-
-### Customization Steps
-
-1. Update `package.json` with your project name and details
-2. Replace `/public/template-logo.png` with your logo
-3. Update the title in `index.html`
-4. Modify `src/client/theme/theme.js` for your color scheme
-
-### Removing Demo Code
-
-| Component | Location | Action |
-|-----------|----------|--------|
-| Database schema | `prisma/schema.prisma` | Replace with your models |
-| API routes | `src/server/routes/v1/` | Replace with your routes |
-| Business logic | `src/server/services/` | Replace with your services |
-| Pages | `src/client/pages/` | Replace with your pages |
-| Hooks | `src/client/hooks/` | Customize for your data |
-| Services | `src/client/services/` | Customize for your API |
+| Script | Descripción |
+|---|---|
+| `npm run dev` | Inicia frontend y backend en modo desarrollo |
+| `npm run build` | Genera el build de producción del frontend |
+| `npm start` | Inicia el servidor en modo producción |
+| `npm run db:studio` | Abre Prisma Studio para gestionar la base de datos |
+| `npm run db:reset` | Resetea la base de datos |
+| `npm run lint` | Ejecuta el linter ESLint |
 
 ---
 
-## Project Structure
+## Estructura del proyecto
+├── src/
+│   ├── client/          # Frontend React
+│   │   ├── components/  # Componentes React
+│   │   └── index.jsx    # Punto de entrada del frontend
+│   └── server/          # Backend Express
+│       ├── config/      # Configuración del servidor
+│       ├── middleware/  # Middleware (seguridad, validación)
+│       ├── routes/      # Rutas de la API
+│       │   └── v1/      # Versión 1 de la API
+│       └── services/    # Lógica de negocio y base de datos
+├── prisma/
+│   └── schema.prisma    # Esquema de la base de datos
+├── public/              # Assets estáticos
+├── .env                 # Variables de entorno (no commitear)
+├── example.env          # Ejemplo de variables de entorno
+├── package.json         # Dependencias y scripts
+└── vite.config.js       # Configuración de Vite
+---
 
-```
-src/
-├── client/                    # Frontend (React + Vite)
-│   ├── components/            # Reusable UI components
-│   ├── context/               # React contexts
-│   ├── hooks/                 # Custom hooks (useContacts, useTasks, etc.)
-│   ├── pages/                 # Route components
-│   ├── services/              # API service layer
-│   ├── theme/                 # Material-UI theme
-│   └── __tests__/             # Client tests
-│
-└── server/                    # Backend (Express)
-    ├── config/                # Centralized configuration
-    ├── middleware/            # Security, validation
-    ├── routes/                # API route definitions
-    ├── services/              # Business logic
-    └── utils/                 # Utilities
+## Endpoints de la API
 
-prisma/                        # Database
-├── schema.prisma              # Schema definition
-├── migrations/                # Migration history
-└── seed.js                    # Sample data
+Base URL local: `http://localhost:8080/api/v1`  
+Base URL producción: `https://simple-vite-react-expressarquiwebtp-production.up.railway.app/api/v1`
 
-scripts/                       # Setup utilities
-```
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/health` | Health check del servidor |
+| GET | `/contact/list` | Listar contactos |
+| POST | `/contact` | Crear contacto |
+| GET | `/task/list` | Listar tareas |
+| POST | `/task` | Crear tarea |
+| GET | `/project/list` | Listar proyectos |
+| POST | `/project` | Crear proyecto |
 
 ---
 
-## Available Scripts
+## Despliegue en Railway
 
-### Development
+### 1. Crear cuenta en Railway
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start client and server concurrently |
-| `npm run client` | Start Vite dev server only |
-| `npm run server` | Start Express with Nodemon |
-| `npm run server:debug` | Start with Node inspector |
-| `npm run setup` | Interactive project setup |
-| `npm run clean` | Clear build artifacts |
+Registrarse en [railway.app](https://railway.app) con cuenta de GitHub.
 
-### Database
+### 2. Crear nuevo proyecto
 
-| Command | Description |
-|---------|-------------|
-| `npm run db:setup` | Run migrations and generate client |
-| `npm run db:migrate` | Run pending migrations |
-| `npm run db:generate` | Regenerate Prisma client |
-| `npm run db:studio` | Open Prisma Studio GUI |
-| `npm run db:reset` | Reset database |
-| `npm run db:seed` | Seed with sample data |
+- Seleccionar **GitHub Repository**
+- Elegir el repositorio del proyecto
 
-### Testing
+### 3. Agregar PostgreSQL
 
-| Command | Description |
-|---------|-------------|
-| `npm test` | Run tests in watch mode |
-| `npm run test:run` | Run tests once |
-| `npm run test:coverage` | Generate coverage report |
+- Hacer clic en **+ Add** → **Database** → **PostgreSQL**
+- Railway provisiona automáticamente la base de datos
 
-### Code Quality
+### 4. Configurar variables de entorno
 
-| Command | Description |
-|---------|-------------|
-| `npm run lint` | Check for linting issues |
-| `npm run lint:fix` | Auto-fix linting issues |
-| `npm run format` | Format with Prettier |
-| `npm run format:check` | Check formatting |
+En el servicio de la aplicación → **Variables**:
 
-### Production
+NODE_ENV=production
+DATABASE_URL=${{Postgres.DATABASE_URL}}
 
-| Command | Description |
-|---------|-------------|
-| `npm run build` | Build for production |
-| `npm start` | Start production server |
-| `npm run preview` | Preview production build |
+### 5. Configurar scripts de build
 
----
-
-## Architecture
-
-### Frontend Stack
-
-- **Vite 6** - Build tooling with hot module replacement
-- **React 19** - UI library with latest features
-- **Material-UI 6** - Component library with theming
-- **React Router 7** - Client-side routing
-- **Formik + Yup** - Form handling and validation
-- **Axios** - HTTP client with interceptors
-
-### Backend Stack
-
-- **Express 5** - Web framework
-- **Prisma 7** - Type-safe ORM with adapter pattern
-- **PostgreSQL** - Database
-- **Celebrate/Joi** - Input validation
-- **Helmet** - Security headers
-- **Rate Limiting** - Request throttling
-
-### Code Quality
-
-- **ESLint 9** - Linting with flat config
-- **Prettier** - Code formatting
-- **Vitest** - Testing framework
-- **React Testing Library** - Component testing
-
----
-
-## API Reference
-
-All endpoints are prefixed with `/api/v1/`.
-
-### Contacts
-
-```
-GET    /contact/list     List all contacts
-GET    /contact/:id      Get contact by ID
-POST   /contact          Create contact
-PUT    /contact/:id      Update contact
-DELETE /contact/:id      Delete contact
-```
-
-### Tasks
-
-```
-GET    /task/list        List all tasks
-GET    /task/:id         Get task by ID
-POST   /task             Create task
-PUT    /task/:id         Update task
-DELETE /task/:id         Delete task
-```
-
-### Projects
-
-```
-GET    /project/list     List all projects
-GET    /project/:id      Get project by ID
-POST   /project          Create project
-PUT    /project/:id      Update project
-DELETE /project/:id      Delete project
-```
-
-### Response Format
+En `package.json`:
 
 ```json
-{
-  "success": true,
-  "data": {},
-  "message": "Success",
-  "timestamp": "2026-01-18T12:00:00.000Z"
-}
+"build": "npx prisma generate && vite build",
+"start": "node src/server/index.js"
 ```
 
----
+### 6. Ejecutar migraciones en producción
 
-## Screenshots
-
-<div align="center">
-
-**Homepage**
-
-<img src="screenshots/homepage.png" alt="Homepage" height="350">
-
-**Contact Management**
-
-<img src="screenshots/contacts.png" alt="Contacts" height="350">
-
-**Task Tracking**
-
-<img src="screenshots/tasks.png" alt="Tasks" height="350">
-
-**Project Overview**
-
-<img src="screenshots/projects.png" alt="Projects" height="350">
-
-</div>
-
----
-
-## Troubleshooting
-
-### Database Connection Failed
-
-1. Verify PostgreSQL is running: `pg_isready -h localhost -p 5432`
-2. Check `DATABASE_URL` in `.env` file
-3. Run migrations: `npm run db:setup`
-4. Verify database exists: `psql -l`
-
-### Port Already in Use
+Usando la `DATABASE_PUBLIC_URL` del servicio Postgres:
 
 ```bash
-# Kill processes on ports 3000 and 8080
-lsof -ti:3000 | xargs kill -9
-lsof -ti:8080 | xargs kill -9
+npx prisma db push --url "postgresql://..."
 ```
 
-### Hot Reload Not Working
+### 7. Generar dominio público
 
-1. Increase file watcher limit (Linux): 
-   ```bash
-   echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
-   ```
-2. Restart the dev server
-
-### Build Issues
-
-```bash
-npm run clean
-npm run build
-```
+En Railway → Settings → **Generate Domain**
 
 ---
 
-## Contributing
+## Evidencias técnicas del TP
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Make your changes
-4. Run tests: `npm run test:run && npm run lint`
-5. Submit a pull request
+El proyecto fue utilizado para documentar y evidenciar el flujo completo de una solicitud web, incluyendo:
 
----
-
-## License
-
-MIT License - see [LICENSE](LICENSE) for details.
+- Análisis DNS con `nslookup` y `ipconfig /displaydns`
+- Trazabilidad de red con `tracert` hacia `pol.una.py` y `google.com`
+- Análisis TCP con `netstat` y Wireshark
+- Inspección de headers HTTP con `curl` y DevTools
+- Análisis de performance con DevTools Performance
+- Despliegue en Railway con CI/CD automático
 
 ---
 
-<p align="center">
-  <sub>Built with <a href="https://withAntigravity.com">Antigravity</a></sub>
-</p>
+## Licencia
+
+MIT
