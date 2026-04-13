@@ -16,12 +16,12 @@
  *   console.log(config.port); // 8080
  */
 
-import * as dotenv from "dotenv";
+//import * as dotenv from "dotenv"; blanqui
 
 // Load environment variables from .env file
-if (!process.env.DATABASE_URL) {
+/*if (!process.env.DATABASE_URL) {
   dotenv.config();
-}
+}*/
 
 /**
  * Validate required environment variables
