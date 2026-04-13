@@ -26,8 +26,7 @@ export default defineConfig({
 
     // Database connection for Prisma CLI (migrations, introspection)
     datasource: {
-        //url: process.env.DATABASE_URL!,
-      url: env("DATABASE_URL"),
+      url: process.env.DATABASE_URL,
     },
 });
 
