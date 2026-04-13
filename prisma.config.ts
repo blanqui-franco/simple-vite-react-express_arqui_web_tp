@@ -16,9 +16,8 @@ import dotenv from "dotenv";
 // Load environment variables
 //dotenv.config(); 
 if (!process.env.DATABASE_URL) {
-  dotenv.config();
+  throw new Error("DATABASE_URL no está definida");
 }
-
 
 export default defineConfig({
     // Path to schema file
