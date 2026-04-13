@@ -19,7 +19,9 @@
 import * as dotenv from "dotenv";
 
 // Load environment variables from .env file
-dotenv.config();
+if (!process.env.DATABASE_URL) {
+  dotenv.config();
+}
 
 /**
  * Validate required environment variables
