@@ -118,6 +118,8 @@ Esto levanta simultáneamente:
 ---
 
 ## Estructura del proyecto
+
+
 ├── src/
 │   ├── client/          # Frontend React
 │   │   ├── components/  # Componentes React
@@ -135,6 +137,8 @@ Esto levanta simultáneamente:
 ├── example.env          # Ejemplo de variables de entorno
 ├── package.json         # Dependencias y scripts
 └── vite.config.js       # Configuración de Vite
+
+
 ---
 
 ## Endpoints de la API
